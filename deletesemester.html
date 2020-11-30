@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Software Precision Analytics - Delete Semester</title>
+<style type="text/css">
+   fieldset {
+	   width: 5%;
+	   border: 2px solid #CCC;
+	}
+   lable {
+	   width: 75px;
+	   float: left;
+	   text-align: left;
+	   font-weight: bold;
+	}
+	input {
+	   border: 1px solid #000;
+	   padding: 3px;
+	}
+</style>
+
+<body>
+<h1>Software Precision Analytics - Delete Semester</h1>
+
+<h2>Delete Semester</h2>
+<form method="post" action="deletesemester.php">
+   <p>Select WHERE field:  
+	   <select id="Field" name="Field">
+		   <option value="TermID" selected>TermID</option>
+		   <option value="TermName">TermName</option>
+		   <option value="AcademicYear">AcademicYear</option>
+	   </select></p>
+   
+   <p><strong>Value's is: </strong></br>
+	   <input id="Value" name="Value" type="text"></p>
+
+   <p><input type="Submit" name="Submit" value="Delete Semester" /></p>
+</form>
+
+</body>
+</html>

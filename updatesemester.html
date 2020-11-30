@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Software Precision Analytics - Update Semester Entry</title>
+<style type="text/css">
+   fieldset {
+      width: 5%;
+	  border: 2px solid #CCC;
+	}
+   lable {
+	  width: 75px;
+	  float: left;
+	  text-align: left;
+	  font-weight: bold;
+	}
+   input {
+	  border: 1px solid #000;
+	  padding: 3px;
+	}
+</style>
+</head>
+
+<body>
+<h1>Software Precision Analytics - Update Semester Entry</h1>
+
+<h2>Update Semester</h2>
+<form method="post" action="updatesemester.php">
+   <p>SET field:  
+	   <select id="Field" name="Field">
+		   <option value="TermID" selected>TermID</option>
+		   <option value="TermName">TermName</option>
+		   <option value="AcademicYear">AcademicYear</option>
+		</select></p>
+
+   <p><strong>Value's to: </strong></br>
+	   <input id="Value" name="Value" type="text"></p>
+   <p>WHERE field:
+	   <select id="WhereField" name="WhereField">
+		   <option value="TermID" selected>TermID</option>
+		   <option value="TermName">TermName</option>
+		   <option value="AcademicYear">AcademicYear</option>
+	   </select></p>
+   <p><strong>Value's is: </strong></br>
+	   <input id="WhereValue" name="WhereValue" type="text"></p>
+
+   <p><input type="Submit" name="Submit" value="Update Semester" /></p>
+</form>
+
+</body>
+</html>

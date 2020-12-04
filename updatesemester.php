@@ -16,8 +16,15 @@
 	
 	$Field=$_POST['Field'];
 	$Value=$_POST['Value'];
-	$Where=$_POST['WhereField'];
+	$WhereField=$_POST['WhereField'];
 	$WhereValue=$_POST['WhereValue'];
+	
+	// plus2net
+	setcookie("Field", $Field, time()+3600, "/");
+	setcookie("Value", $Value, time()+3600, "/");
+	setcookie("WhereField", $WhereField, time()+3600, "/");
+	setcookie("WhereValue", $WhereValue, time()+3600, "/");
+	/* expire in 1 hour */
 	
 	@$db = new mysqli('localhost', 'root', '', 'class');
 	
@@ -29,12 +36,11 @@
 
 	$query = "UPDATE semester SET $Field='$Value' WHERE $WhereField='$WhereValue'";
 	$stmt = $db->prepare($query);
-	$stmt->execute();
 
 	echo "<p><b>Executed SQL Statement: </b>
 			UPDATE semester SET $Field='$Value' WHERE $WhereField='$WhereValue'</p>";
 
-	if ($db->query($query) === TRUE) {
+	if ($stmt->execute()) {
 	   echo "<p>Semester Updated!</p>";
 	} else {
 		echo "<p>An error has occurred.</br>
@@ -45,5 +51,9 @@
 	
 	
    ?>
+   
+	<form action="viewsemesterupdate.php">
+       <p><input type="Submit" name="Submit" value="Get View" /></p>
+	</form>
 </body>
 </html>

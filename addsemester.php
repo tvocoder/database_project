@@ -1,4 +1,8 @@
 <!DOCTYPE html>
+<?php
+session_start();
+?>
+
 <html>
 <head>
    <title>Software Precision Analytics</title>
@@ -15,29 +19,17 @@
 		exit;
 	}
 	
-	$query_semester = "INSERT INTO semester(TermName, AcademicYear) VALUES (NULL, NULL)";
-	$query_rating = "INSERT INTO course_rating(Rating, Date) VALUES (NULL, NULL)";
+	$sql = "INSERT INTO semester(TermName, AcademicYear) VALUES (NULL, NULL)";
 	 
-	$stmt1 = $db->prepare($query_semester);
-	$stmt1->execute();
-	$last_id = mysqli_insert_id($db);
 	
-	$stmt2 = $db->prepare($query_rating);
-	$stmt2->execute();
-	
-	echo "<h1>New Semester Id: $last_id </h1>";
-	
-	if ($stmt1->affected_rows > 0) {
-		echo "<p>New semester created in database.</p>";
-		if ($stmt2->affected_rows > 0) {
-			echo "<p>New rating created in database.</p>";
-		} else {
-			echo "<p>An error has occurred.
-				</br>The item was not added.</p>";
-		}
-	} else {
-		echo "<p>An error has occurred.
-			</br>The item was not added.</p>";
+    if($db->query($sql)) {
+	   $_SESSION['SemesterId'] = $db->insert_id;
+	   $semesterid = $_SESSION['SemesterId'];
+	   
+	   echo "New record created successfully. Semester ID is: " . $semesterid;
+	   } 
+	else {
+	   echo "Error: " . $sql . "</br>" . $db->error;
 	}
 	
 	$db->close();
@@ -46,10 +38,10 @@
 
 <fieldset>
    <p><label for="FirstName">First Name:</label>
-   <input type="text" id="FirstName" name="FirstName" /></p>
+   <input type="text" id="fname" name="FirstName" /></p>
    
    <p><label for="LastName">Last Name:</label>
-   <input type="text" id="LastName" name="LastName" /></p>
+   <input type="text" id="lname" name="LastName" /></p>
    
    <p><input type="submit" type="submit" />
 	  <input type="reset" type="reset" />
